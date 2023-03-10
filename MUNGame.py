@@ -11,13 +11,13 @@ class Item:
     def string(self):
         itemName = print("ItemName: " + self.__itemName)
         if self.__itemDescription != " ":
-            charAttributes = print("Item Description:" + self.__itemDescription)
-    
+            itemDescription = print("Item Description:" + self.__itemDescription)
+
 class Character:
-    def __init__(self, characterName, characterRace = "Human", characterAttributeOne = "None", characterAttributeTwo = "None", itemCount = 0, healthBar = 100):
+    def __init__(self, characterName, characterRace = "Human", AttributeOne = "None", AttributeTwo = "None", itemCount = 0, healthBar = 100):
         self.__characterName = characterName
-        self.__characterAttributeOne = characterAttributeOne
-        self.__characterAttributeTwo = characterAttributeTwo
+        self.__AttributeOne = AttributeOne
+        self.__AttributeTwo = AttributeTwo
         self.__inventory = []
         self.__itemCount = itemCount
         self.__healthBar = healthBar
@@ -34,14 +34,14 @@ class Character:
         self.__characterRace = changeRace
     
     def getAttributeOne(self):
-        return self.__characterAttributeOne
+        return self.__AttributeOne
     def setAttributeOne(self, newAttributeOne):
-        self.__characterAttributeOne = newAttributeOne
+        self.__AttributeOne = newAttributeOne
 
     def getAttributeTwo(self):
         return self.__characterAttributeTwo
     def setAttributeTwo(self, newAttributeTwo):
-        self.__characterAttributeTwo = newAttributeTwo
+        self.__AttributeTwo = newAttributeTwo
 
     def getInventory(self):
         return self.__inventory
@@ -80,36 +80,58 @@ class Character:
         if item.getDescription() == ' ':
             print(" ")
 
-    def string(self):
+    def characterdesc(self):
         print("Characters Name: " + self.__characterName)
-        print("Charcter Attributes:", self.__characterAttributeOne, end= '')
-        if self.__characterAttributeOne != 'None':
-            print("&", self.__characterAttributeTwo)
-        if self.__characterAttributeOne == 'None':
-            print("")
-        print("Character's Inventory: ", end = '')
+        print("Charcter Attributes:", self.__AttributeOne, end= '')
+        if self.__AttributeOne != 'none' and self.__AttributeTwo != 'none':
+            print(" &", self.__AttributeTwo)
+        #Prevents 'None' from printing twice if the character has no attributes
+        if self.__AttributeTwo == 'none':
+            print(" ")
+        print("Character's Inventory: ", end = ' ')
         print(self.getInventory())
+        return ' '
 
-    def lookInventory(self):
+    def lookInventory():
         print(" ")
         print("Opening inventory. . .")
         print(self.__inventory)
-    
-
-#def fight():
 
 def main():
-    knifeItem = Item("Knife")
-    FoodItem = Item("Sham", "A questionable can of 'meat'")
-    StephCharacter = Character("Steph", "Elf")
-    CindyCharacter = Character("Cindy", "Human" "Magic", "Strength", "None", 110)
-    StephCharacter.string()
-    CindyCharacter.string()
-    StephCharacter.equipItem(knifeItem)
-    StephCharacter.equipItem(FoodItem)
+    ##Character creator##
+    C1Name = input("Please input Character 1's Name: ")
+    C1Race = input("Please input the race of Character 1: ")
+    C1Atrribute1 = input("Please input Chracter 1's first attribute, enter 'none' if none: ")
+    if C1Atrribute1 != 'none':
+        C1Atrribute2 = input("Please input Chracter 1's second attribute, enter 'none' if none: ")
+    if C1Atrribute1 == 'none':
+        C1Atrribute2 = 'none'
+    Character1 = Character(C1Name, C1Race, C1Atrribute1, C1Atrribute2, 0, 100)
 
-    StephCharacter.lookInventory()
-    StephCharacter.dropItem(FoodItem)
-    StephCharacter.lookInventory()
+    C2Name = input("Please input Character 2's Name: ")
+    C2Race = input("Please input the race of Character 2: ")
+    C2Atrribute1 = input("Please input Chracter 2's first attribute, enter 'none' if none: ")
+    if C2Atrribute1 != 'none':
+        C2Atrribute2 = input("Please input Chracter 2's second attribute, enter 'none' if none: ")
+    if C2Atrribute1 == 'none':
+        C2Atrribute2 = 'none'
+    Character2 = Character(C2Name, C2Race, C2Atrribute1, C2Atrribute2, 0, 100)
+        
+    C3Name = input("Please input Character 3's Name: ")
+    C3Race = input("Please input the race of Character 3: ")
+    C3Atrribute1 = input("Please input Chracter 3's first attribute, enter 'none' if none: ")
+    if C3Atrribute1 != 'none':
+        C3Atrribute2 = input("Please input Chracter 3's second attribute, enter 'none' if none: ")
+    if C3Atrribute1 == 'none':
+        C3Atrribute2 = 'none'
+    Character3 = Character(C3Name, C3Race, C3Atrribute1, C3Atrribute2, 0, 100)
+    ##Character creator##
+
+    print(" ")
+    print(Character1.characterdesc())
+    print(" ")
+    print(Character2.characterdesc())
+    print(" ")
+    print(Character3.characterdesc())
     
 main()
